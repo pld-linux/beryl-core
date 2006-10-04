@@ -7,14 +7,16 @@ License:	GPL/MIT
 Group:		X11
 Source0:	http://distfiles.xgl-coffee.org/beryl-core/%{name}-%{version}.tar.bz2
 # Source0-md5:	17fc446a78c557e02417b85ce7ea29e1
-Patch0:		beryl-core-aiglx.patch
+Patch0:		%{name}-aiglx.patch
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
-BuildRequires:	intltool
+BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
-BuildRequires:	startup-notification-devel
-BuildRequires:	xorg-lib-libXcomposite-devel
+BuildRequires:	pkgconfig
+BuildRequires:	startup-notification-devel >= 0.7
+BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libXcomposite-devel >= 0.3
 BuildRequires:	xorg-lib-libXdamage-devel
 BuildRequires:	xorg-lib-libXrandr-devel
 BuildRequires:	xorg-proto-glproto-devel
@@ -50,7 +52,7 @@ Requires:	OpenGL-devel
 Requires:	libpng-devel
 Requires:	startup-notification-devel >= 0.7
 Requires:	xorg-lib-libSM-devel
-Requires:	xorg-lib-libXcomposite-devel
+Requires:	xorg-lib-libXcomposite-devel >= 0.3
 Requires:	xorg-lib-libXdamage-devel
 Requires:	xorg-lib-libXrandr-devel
 Conflicts:	compiz-devel
@@ -67,11 +69,6 @@ Pliki nag³ówkowe dla beryla.
 
 %build
 autoreconf -v --install
-ln -s ../po config/po
-#%{__intltoolize}
-%{__glib_gettextize} --copy --force
-rm config/po
-sed -i -e 's/^mkinstalldirs.*/MKINSTALLDIRS=mkdir -p/' po/Makefile.in.in
 
 %configure \
 	--disable-static
@@ -81,10 +78,7 @@ sed -i -e 's/^mkinstalldirs.*/MKINSTALLDIRS=mkdir -p/' po/Makefile.in.in
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	desktopfilesdir=%{_datadir}/wm-properties \
 	DESTDIR=$RPM_BUILD_ROOT
-
-rm -f $RPM_BUILD_ROOT%{_libdir}/compiz/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
