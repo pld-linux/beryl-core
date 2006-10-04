@@ -3,7 +3,7 @@ Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
 Name:		beryl-core
 Version:	0.1.0
 Release:	1
-License:	GPL/MIT
+License:	MIT
 Group:		X11
 Source0:	http://distfiles.xgl-coffee.org/beryl-core/%{name}-%{version}.tar.bz2
 # Source0-md5:	17fc446a78c557e02417b85ce7ea29e1
