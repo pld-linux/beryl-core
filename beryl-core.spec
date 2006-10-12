@@ -20,6 +20,7 @@ BuildRequires:	xorg-lib-libXcomposite-devel >= 0.3
 BuildRequires:	xorg-lib-libXdamage-devel
 BuildRequires:	xorg-lib-libXrandr-devel
 BuildRequires:	xorg-proto-glproto-devel
+BuildRequires:	xorg-util-makedepend
 Provides:	compiz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
