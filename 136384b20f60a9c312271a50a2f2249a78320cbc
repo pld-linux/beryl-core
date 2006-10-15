@@ -1,0 +1,1 @@
+- added R: Requires: %{name} = %{version}-%{release} to -devel section
