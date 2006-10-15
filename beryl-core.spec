@@ -49,6 +49,7 @@ dostarczaj±cych jeszcze wiêcej ¶wiecide³ek.
 Summary:	Header files for beryl
 Summary(pl):	Pliki nag³ówkowe dla beryla
 Group:		Development
+Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-devel
 Requires:	libpng-devel
 Requires:	startup-notification-devel >= 0.7
