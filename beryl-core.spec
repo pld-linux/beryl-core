@@ -1,12 +1,13 @@
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
 Name:		beryl-core
-Version:	20061004
-Release:	2
+Version:	20061020
+Release:	1
 License:	MIT
 Group:		X11
-Source0:	http://distfiles.xgl-coffee.org/beryl-core/%{name}-%{version}.tar.bz2
-# Source0-md5:	20cd640455a2968ca8fc6354360b0c70
+#Source0:	http://distfiles.xgl-coffee.org/beryl-core/%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	f0b8043fe20a206bf5e78ca6942b695c
 Patch0:		%{name}-aiglx.patch
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
@@ -66,7 +67,7 @@ Header files for beryl.
 Pliki nag³ówkowe dla beryla.
 
 %prep
-%setup -q -n snapshots/%{name}
+%setup -q -n %{name}
 %patch0 -p1
 
 %build
@@ -94,6 +95,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%dir %{_includedir}/beryl
-%{_includedir}/beryl/beryl.h
+%{_includedir}/beryl
 %{_pkgconfigdir}/beryl.pc
