@@ -1,13 +1,16 @@
+#
+# TODO: python
+#
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
 Name:		beryl-core
-Version:	20061020
+Version:	20061102
 Release:	1
 License:	MIT
 Group:		X11
 #Source0:	http://distfiles.xgl-coffee.org/beryl-core/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	f0b8043fe20a206bf5e78ca6942b695c
+# Source0-md5:	52dc5f8e5c65d7fb60766f7877c13c1c
 Patch0:		%{name}-aiglx.patch
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
@@ -86,14 +89,21 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/*.so.*.*.*
 %{_datadir}/beryl
 %{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
+%{_libdir}/*.so
+%{_libdir}/*.la
 %{_includedir}/beryl
-%{_pkgconfigdir}/beryl.pc
+%{_pkgconfigdir}/*.pc
+%{_mandir}/man3/*.3*
