@@ -18,10 +18,12 @@ BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	python-modules >= 1:2.2
 BuildRequires:	startup-notification-devel >= 0.7
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libXcomposite-devel >= 0.3
 BuildRequires:	xorg-lib-libXdamage-devel
+BuildRequires:	xorg-lib-libXinerama-devel
 BuildRequires:	xorg-lib-libXrandr-devel
 BuildRequires:	xorg-proto-glproto-devel
 BuildRequires:	xorg-util-makedepend
