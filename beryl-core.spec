@@ -4,17 +4,20 @@
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
 Name:		beryl-core
-Version:	20061102
+Version:	20061201
 Release:	1
 License:	MIT
 Group:		X11
 #Source0:	http://distfiles.xgl-coffee.org/beryl-core/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	52dc5f8e5c65d7fb60766f7877c13c1c
+# Source0-md5:	5c0ac3fcc25e8e3936e854dcff5d1b05
+Source1:	beryl-mesa-%{version}.tar.bz2
+# Source1-md5:	c9a58134b47f871daefe815d9c7b5692
 Patch0:		%{name}-aiglx.patch
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 2.0
+BuildRequires:	intltool
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -72,14 +75,20 @@ Header files for beryl.
 Pliki nag³ówkowe dla beryla.
 
 %prep
-%setup -q -n %{name}
+%setup -q -a1 -n %{name}
 %patch0 -p1
 
 %build
 autoreconf -v --install
+%{__glib_gettextize}
+intltoolize --automake --copy --force
+
+# bashizms inside
+sed -i -e 's@^#! /bin/sh$@#!/bin/bash@' configure
 
 %configure \
-	--disable-static
+	--disable-static \
+	--with-berylmesadir=beryl-mesa
 %{__make}
 
 %install
@@ -88,17 +97,23 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
+%dir %{_libdir}/beryl
+%dir %{_libdir}/beryl/backends
+%attr(755,root,root) %{_libdir}/beryl/backends/*.so
+%{_libdir}/beryl/backends/*.la
 %{_datadir}/beryl
 %{_mandir}/man1/*
 
