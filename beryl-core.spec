@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	beryl_mesa	# build beryl-xgl statically linked with own libGL 
+%bcond_without	beryl_mesa	# build beryl-xgl statically linked with own libGL 
 #
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
@@ -112,8 +112,6 @@ zh_CN
 zh_HK
 zh_TW
 EOF
-
-sed -i 's/bin_PROGRAMS = beryl beryl-settings-dump beryl-xgl/bin_PROGRAMS = beryl beryl-settings-dump/' src/Makefile.am
 
 %build
 %{__glib_gettextize}
