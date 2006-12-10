@@ -1,8 +1,6 @@
 #
-# TODO: python
-#
 # Conditional build:
-%bcond_with	beryl_mesa
+%bcond_with	beryl_mesa	# build beryl-xgl statically linked with own libGL 
 #
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
@@ -16,7 +14,10 @@ Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
 # Source0-md5:	24caed8a8cb50fd30823a9ee182f85f4
 Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
 # Source1-md5:	c22765c2637846907ee6154b548151e9
+Patch0:		%{name}-link.patch
+URL:		http://beryl-project.org/
 BuildRequires:	GConf2-devel >= 2.0
+BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	glib2-devel >= 2.0
@@ -24,7 +25,6 @@ BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	python-modules >= 1:2.2
 BuildRequires:	sed >= 4.0
 BuildRequires:	startup-notification-devel >= 0.7
 BuildRequires:	xorg-lib-libSM-devel
@@ -61,16 +61,18 @@ dostarczaj±cych jeszcze wiêcej ¶wiecide³ek.
 %package devel
 Summary:	Header files for beryl
 Summary(pl):	Pliki nag³ówkowe dla beryla
-Group:		Development/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	OpenGL-devel
+Requires:	OpenGL-GLX-devel
+Requires:	glib2-devel >= 2.0
 Requires:	libpng-devel
 Requires:	startup-notification-devel >= 0.7
 Requires:	xorg-lib-libSM-devel
 Requires:	xorg-lib-libXcomposite-devel >= 0.3
 Requires:	xorg-lib-libXdamage-devel
+Requires:	xorg-lib-libXinerama-devel
 Requires:	xorg-lib-libXrandr-devel
-Conflicts:	compiz-devel
+Requires:	xorg-proto-glproto-devel
 
 %description devel
 Header files for beryl.
@@ -80,6 +82,8 @@ Pliki nag³ówkowe dla beryla.
 
 %prep
 %setup -q %{?with_beryl_mesa: -a1}
+%patch0 -p1
+
 mv -f po/{ca_ES,ca}.po
 mv -f po/{es_ES,es}.po
 mv -f po/{fr_FR,fr}.po
@@ -134,6 +138,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/beryl/backends/*.la
+
+# program removed
+rm -f $RPM_BUILD_ROOT%{_mandir}/man1/beryl-settings-dump.1
+
 %find_lang %{name}
 
 %clean
@@ -144,21 +153,24 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README TODO
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/*.so.*.*.*
+%doc AUTHORS README TODO
+%attr(755,root,root) %{_bindir}/beryl
+%attr(755,root,root) %{_libdir}/libberylsettings.so.*.*.*
 %dir %{_libdir}/beryl
 %dir %{_libdir}/beryl/backends
 %attr(755,root,root) %{_libdir}/beryl/backends/*.so
-# XXX: check if needed (I don't see libltdl in BRs)
-%{_libdir}/beryl/backends/*.la
 %{_datadir}/beryl
-%{_mandir}/man1/*
+%{_mandir}/man1/beryl.1*
+%if %{with beryl_mesa}
+%attr(755,root,root) %{_bindir}/beryl-xgl
+%{_mandir}/man1/beryl-xgl.1*
+%endif
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
+%attr(755,root,root) %{_libdir}/libberylsettings.so
+%{_libdir}/libberylsettings.la
 %{_includedir}/beryl
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/beryl.pc
+%{_pkgconfigdir}/berylsettings.pc
 %{_mandir}/man3/*.3*
