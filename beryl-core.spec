@@ -16,10 +16,11 @@ Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
 # Source0-md5:	24caed8a8cb50fd30823a9ee182f85f4
 Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
 # Source1-md5:	c22765c2637846907ee6154b548151e9
+BuildRequires:	GConf2-devel >= 2.0
 BuildRequires:	autoconf >= 2.57
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	glib2-devel >= 2.0
-BuildRequires:	intltool
+BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -60,7 +61,7 @@ dostarczaj±cych jeszcze wiêcej ¶wiecide³ek.
 %package devel
 Summary:	Header files for beryl
 Summary(pl):	Pliki nag³ówkowe dla beryla
-Group:		Development
+Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	OpenGL-devel
 Requires:	libpng-devel
@@ -79,7 +80,7 @@ Pliki nag³ówkowe dla beryla.
 
 %prep
 %setup -q %{?with_beryl_mesa: -a1}
-mv -f po/{es_AR,ar}.po
+mv -f po/{ca_ES,ca}.po
 mv -f po/{es_ES,es}.po
 mv -f po/{fr_FR,fr}.po
 mv -f po/{hu_HU,hu}.po
@@ -88,11 +89,13 @@ mv -f po/{ja_JP,ja}.po
 mv -f po/{ko_KR,ko}.po
 mv -f po/{pt_PT,pt}.po
 mv -f po/{sv_SE,sv}.po
+# sv_FI is identical to sv_SE
 
-    # NOTE: check the list ofter any upgrade!
+# NOTE: check the list ofter any upgrade!
 cat > po/LINGUAS <<EOF
-ar
+ca
 es
+es_AR
 fr
 hu
 it
@@ -106,11 +109,16 @@ zh_HK
 zh_TW
 EOF
 
-%build
 sed -i 's/bin_PROGRAMS = beryl beryl-settings-dump beryl-xgl/bin_PROGRAMS = beryl beryl-settings-dump/' src/Makefile.am
-autoreconf -v --install
+
+%build
 %{__glib_gettextize}
 %{__intltoolize} --automake
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 
 # bashisms inside
 sed -i -e 's@^#! /bin/sh$@#!/bin/bash@' configure
