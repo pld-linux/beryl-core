@@ -35,6 +35,7 @@ BuildRequires:	xorg-lib-libXrandr-devel
 BuildRequires:	xorg-proto-glproto-devel
 BuildRequires:	xorg-util-makedepend
 Provides:	compiz
+Obsoletes:	compiz-quinnstorm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -73,6 +74,7 @@ Requires:	xorg-lib-libXdamage-devel
 Requires:	xorg-lib-libXinerama-devel
 Requires:	xorg-lib-libXrandr-devel
 Requires:	xorg-proto-glproto-devel
+Obsoletes:	compiz-quinnstorm-devel
 
 %description devel
 Header files for beryl.
