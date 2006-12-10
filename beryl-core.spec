@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	beryl_mesa	# build beryl-xgl statically linked with own libGL 
+%bcond_without	beryl_mesa	# beryl-xgl statically linked with own libGL
 #
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
