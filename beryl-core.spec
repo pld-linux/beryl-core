@@ -24,6 +24,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	python-modules >= 1:2.2
+BuildRequires:	sed >= 4.0
 BuildRequires:	startup-notification-devel >= 0.7
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libXcomposite-devel >= 0.3
