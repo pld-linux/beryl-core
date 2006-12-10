@@ -1,18 +1,20 @@
 #
 # TODO: python
 #
-%bcond_with     beryl_mesa
-
+# Conditional build:
+%bcond_with	beryl_mesa
+#
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
 Name:		beryl-core
 Version:	0.1.3
 Release:	1
+Epoch:		1
 License:	MIT
 Group:		X11
-Source0:	http://releases.beryl-project.org/0.1.3/%{name}-%{version}.tar.bz2
+Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
 # Source0-md5:	24caed8a8cb50fd30823a9ee182f85f4
-Source1:	http://releases.beryl-project.org/0.1.3/beryl-mesa-%{version}.tar.bz2
+Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
 # Source1-md5:	c22765c2637846907ee6154b548151e9
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
@@ -58,7 +60,7 @@ dostarczaj±cych jeszcze wiêcej ¶wiecide³ek.
 Summary:	Header files for beryl
 Summary(pl):	Pliki nag³ówkowe dla beryla
 Group:		Development
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	OpenGL-devel
 Requires:	libpng-devel
 Requires:	startup-notification-devel >= 0.7
@@ -107,9 +109,9 @@ EOF
 sed -i 's/bin_PROGRAMS = beryl beryl-settings-dump beryl-xgl/bin_PROGRAMS = beryl beryl-settings-dump/' src/Makefile.am
 autoreconf -v --install
 %{__glib_gettextize}
-intltoolize --automake --copy --force
+%{__intltoolize} --automake
 
-# bashizms inside
+# bashisms inside
 sed -i -e 's@^#! /bin/sh$@#!/bin/bash@' configure
 
 %configure \
@@ -139,17 +141,15 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/beryl
 %dir %{_libdir}/beryl/backends
 %attr(755,root,root) %{_libdir}/beryl/backends/*.so
+# XXX: check if needed (I don't see libltdl in BRs)
 %{_libdir}/beryl/backends/*.la
 %{_datadir}/beryl
 %{_mandir}/man1/*
-%{_libdir}/beryl/backends
-%{_libdir}/beryl/backends/*.so
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/*.so
+%attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
-%{_libdir}/beryl/backends/*.la
 %{_includedir}/beryl
 %{_pkgconfigdir}/*.pc
 %{_mandir}/man3/*.3*
