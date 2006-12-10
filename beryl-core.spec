@@ -1,19 +1,19 @@
 #
 # TODO: python
 #
+%bcond_with     beryl_mesa
+
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
 Name:		beryl-core
-Version:	20061201
+Version:	0.1.3
 Release:	1
 License:	MIT
 Group:		X11
-#Source0:	http://distfiles.xgl-coffee.org/beryl-core/%{name}-%{version}.tar.bz2
-Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	5c0ac3fcc25e8e3936e854dcff5d1b05
-Source1:	beryl-mesa-%{version}.tar.bz2
-# Source1-md5:	c9a58134b47f871daefe815d9c7b5692
-Patch0:		%{name}-aiglx.patch
+Source0:	http://releases.beryl-project.org/0.1.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	24caed8a8cb50fd30823a9ee182f85f4
+%{?with_beryl_mesa:Source1:	http://releases.beryl-project.org/0.1.3/beryl-mesa-%{version}.tar.bz2}
+# Source1-md5:	c22765c2637846907ee6154b548151e9
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 2.0
@@ -75,10 +75,36 @@ Header files for beryl.
 Pliki nag³ówkowe dla beryla.
 
 %prep
-%setup -q -a1 -n %{name}
-%patch0 -p1
+%setup -q %{?with_beryl_mesa: -a1}
+mv -f po/{es_AR,ar}.po
+mv -f po/{es_ES,es}.po
+mv -f po/{fr_FR,fr}.po
+mv -f po/{hu_HU,hu}.po
+mv -f po/{it_IT,it}.po
+mv -f po/{ja_JP,ja}.po
+mv -f po/{ko_KR,ko}.po
+mv -f po/{pt_PT,pt}.po
+mv -f po/{sv_SE,sv}.po
+
+    # NOTE: check the list ofter any upgrade!
+cat > po/LINGUAS <<EOF
+ar
+es
+fr
+hu
+it
+ja
+ko
+pt_BR
+pt
+sv
+zh_CN
+zh_HK
+zh_TW
+EOF
 
 %build
+sed -i 's/bin_PROGRAMS = beryl beryl-settings-dump beryl-xgl/bin_PROGRAMS = beryl beryl-settings-dump/' src/Makefile.am
 autoreconf -v --install
 %{__glib_gettextize}
 intltoolize --automake --copy --force
@@ -87,8 +113,8 @@ intltoolize --automake --copy --force
 sed -i -e 's@^#! /bin/sh$@#!/bin/bash@' configure
 
 %configure \
-	--disable-static \
-	--with-berylmesadir=beryl-mesa
+	%{?with_beryl_mesa:--with-berylmesadir=beryl-mesa} \
+	--disable-static
 %{__make}
 
 %install
@@ -116,11 +142,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/beryl/backends/*.la
 %{_datadir}/beryl
 %{_mandir}/man1/*
+%{_libdir}/beryl/backends
+%{_libdir}/beryl/backends/*.so
 
 %files devel
 %defattr(644,root,root,755)
 %{_libdir}/*.so
 %{_libdir}/*.la
+%{_libdir}/beryl/backends/*.la
 %{_includedir}/beryl
 %{_pkgconfigdir}/*.pc
 %{_mandir}/man3/*.3*
