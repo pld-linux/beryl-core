@@ -12,7 +12,7 @@ License:	MIT
 Group:		X11
 Source0:	http://releases.beryl-project.org/0.1.3/%{name}-%{version}.tar.bz2
 # Source0-md5:	24caed8a8cb50fd30823a9ee182f85f4
-%{?with_beryl_mesa:Source1:	http://releases.beryl-project.org/0.1.3/beryl-mesa-%{version}.tar.bz2}
+Source1:	http://releases.beryl-project.org/0.1.3/beryl-mesa-%{version}.tar.bz2
 # Source1-md5:	c22765c2637846907ee6154b548151e9
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
