@@ -109,7 +109,7 @@ mv -f po/{pt_PT,pt}.po
 mv -f po/{sv_SE,sv}.po
 # sv_FI is identical to sv_SE
 
-# NOTE: check the list ofter any upgrade!
+# NOTE: check the list after any upgrade!
 cat > po/LINGUAS <<EOF
 ca
 es
