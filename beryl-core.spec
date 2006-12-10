@@ -80,6 +80,18 @@ Header files for beryl.
 %description devel -l pl
 Pliki nag³ówkowe dla beryla.
 
+%package gconf
+Summary:	GConf settings plugin for beryl
+Summary(pl):	Wtyczka ustawieñ GConf dla beryla
+Group:		Libraries
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description gconf
+GConf settings plugin for beryl.
+
+%description gconf -l pl
+Wtyczka ustawieñ GConf dla beryla.
+
 %prep
 %setup -q %{?with_beryl_mesa: -a1}
 %patch0 -p1
@@ -156,7 +168,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libberylsettings.so.*.*.*
 %dir %{_libdir}/beryl
 %dir %{_libdir}/beryl/backends
-%attr(755,root,root) %{_libdir}/beryl/backends/*.so
+%attr(755,root,root) %{_libdir}/beryl/backends/libini.so
 %{_datadir}/beryl
 %{_mandir}/man1/beryl.1*
 %if %{with beryl_mesa}
@@ -172,3 +184,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/beryl.pc
 %{_pkgconfigdir}/berylsettings.pc
 %{_mandir}/man3/*.3*
+
+%files gconf
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/beryl/backends/libgconf.so
