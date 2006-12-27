@@ -5,15 +5,15 @@
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
 Name:		beryl-core
-Version:	0.1.3
+Version:	0.1.4
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		X11
 Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	24caed8a8cb50fd30823a9ee182f85f4
+# Source0-md5:	4d4eaa811b107fa099de4120b94d58b1
 Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
-# Source1-md5:	c22765c2637846907ee6154b548151e9
+# Source1-md5:	d2e4a6237101e5ce87000812001fbce1
 Patch0:		%{name}-link.patch
 URL:		http://beryl-project.org/
 BuildRequires:	GConf2-devel >= 2.0
@@ -141,7 +141,9 @@ sed -i -e 's@^#! /bin/sh$@#!/bin/bash@' configure
 
 %configure \
 	%{?with_beryl_mesa:--with-berylmesadir=beryl-mesa} \
-	--disable-static
+	--disable-static \
+	--enable-gconf
+
 %{__make}
 
 %install
