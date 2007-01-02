@@ -34,6 +34,7 @@ BuildRequires:	xorg-lib-libXinerama-devel
 BuildRequires:	xorg-lib-libXrandr-devel
 BuildRequires:	xorg-proto-glproto-devel
 BuildRequires:	xorg-util-makedepend
+Requires:	xorg-app-xvinfo
 Provides:	compiz
 Obsoletes:	compiz-quinnstorm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
