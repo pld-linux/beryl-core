@@ -120,6 +120,7 @@ hu
 it
 ja
 ko
+pl
 pt_BR
 pt
 sv
