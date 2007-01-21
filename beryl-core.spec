@@ -5,15 +5,15 @@
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
 Name:		beryl-core
-Version:	0.1.4
+Version:	0.1.99.2
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		X11
 Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	4d4eaa811b107fa099de4120b94d58b1
+# Source0-md5:	e439403ce19130e37f46185a65465c9b
 Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
-# Source1-md5:	d2e4a6237101e5ce87000812001fbce1
+# Source1-md5:	387d068091bc5c6fa28f6d754e1296d1
 Patch0:		%{name}-link.patch
 URL:		http://beryl-project.org/
 BuildRequires:	GConf2-devel >= 2.0
@@ -169,13 +169,14 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
-%attr(755,root,root) %{_bindir}/beryl
-%attr(755,root,root) %{_libdir}/libberylsettings.so.*.*.*
+%attr(755,root,root) %{_bindir}/beryl*
+%attr(755,root,root) %{_libdir}/libberyl*.so*
 %dir %{_libdir}/beryl
 %dir %{_libdir}/beryl/backends
 %attr(755,root,root) %{_libdir}/beryl/backends/libini.so
 %{_datadir}/beryl
 %{_mandir}/man1/beryl.1*
+%{_pkgconfigdir}/libberyldecoration.pc
 %if %{with beryl_mesa}
 %attr(755,root,root) %{_bindir}/beryl-xgl
 %{_mandir}/man1/beryl-xgl.1*
