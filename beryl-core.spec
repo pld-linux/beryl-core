@@ -100,6 +100,7 @@ Wtyczka ustawieñ GConf dla beryla.
 %patch0 -p1
 
 mv -f po/{ca_ES,ca}.po
+mv -f po/{de_DE,de}.po
 mv -f po/{es_ES,es}.po
 mv -f po/{fr_FR,fr}.po
 mv -f po/{hu_HU,hu}.po
@@ -107,12 +108,15 @@ mv -f po/{it_IT,it}.po
 mv -f po/{ja_JP,ja}.po
 mv -f po/{ko_KR,ko}.po
 mv -f po/{pt_PT,pt}.po
+mv -f po/{ru_RU,ru}.po
 mv -f po/{sv_SE,sv}.po
+mv -f po/{uk_UA,uk}.po
 # sv_FI is identical to sv_SE
 
 # NOTE: check the list after any upgrade!
 cat > po/LINGUAS <<EOF
 ca
+de
 es
 es_AR
 fr
@@ -123,7 +127,9 @@ ko
 pl
 pt_BR
 pt
+ru
 sv
+uk
 zh_CN
 zh_HK
 zh_TW
@@ -170,14 +176,15 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
-%attr(755,root,root) %{_bindir}/beryl*
-%attr(755,root,root) %{_libdir}/libberyl*.so*
+%attr(755,root,root) %{_bindir}/beryl
+%attr(755,root,root) %{_bindir}/beryl-settings-tool
+%attr(755,root,root) %{_libdir}/libberyldecoration.so.*.*.*
+%attr(755,root,root) %{_libdir}/libberylsettings.so.*.*.*
 %dir %{_libdir}/beryl
 %dir %{_libdir}/beryl/backends
 %attr(755,root,root) %{_libdir}/beryl/backends/libini.so
 %{_datadir}/beryl
 %{_mandir}/man1/beryl.1*
-%{_pkgconfigdir}/libberyldecoration.pc
 %if %{with beryl_mesa}
 %attr(755,root,root) %{_bindir}/beryl-xgl
 %{_mandir}/man1/beryl-xgl.1*
@@ -185,11 +192,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libberyldecoration.so
 %attr(755,root,root) %{_libdir}/libberylsettings.so
+%{_libdir}/libberyldecoration.la
 %{_libdir}/libberylsettings.la
 %{_includedir}/beryl
 %{_pkgconfigdir}/beryl.pc
 %{_pkgconfigdir}/berylsettings.pc
+%{_pkgconfigdir}/libberyldecoration.pc
 %{_mandir}/man3/*.3*
 
 %files gconf
