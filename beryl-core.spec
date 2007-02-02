@@ -1,18 +1,18 @@
 #
 # Conditional build:
-%bcond_without	beryl_mesa	# beryl-xgl statically linked with own libGL
+%bcond_with	beryl_mesa	# beryl-xgl statically linked with own libGL
 #
 Summary:	OpenGL window and compositing manager
 Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
 Name:		beryl-core
-Version:	0.1.99.2
+Version:	0.1.9999.1
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		X11
 Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	e439403ce19130e37f46185a65465c9b
-Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
+# Source0-md5:	e7f65f7caf72ed7ec55f46468099f694
+#Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
 # Source1-md5:	387d068091bc5c6fa28f6d754e1296d1
 Patch0:		%{name}-link.patch
 URL:		http://beryl-project.org/
@@ -178,7 +178,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
 %attr(755,root,root) %{_bindir}/beryl
-%attr(755,root,root) %{_bindir}/beryl-settings-tool
 %attr(755,root,root) %{_libdir}/libberyldecoration.so.*.*.*
 %attr(755,root,root) %{_libdir}/libberylsettings.so.*.*.*
 %dir %{_libdir}/beryl
