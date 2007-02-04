@@ -32,6 +32,7 @@ BuildRequires:	xorg-lib-libXcomposite-devel >= 0.3
 BuildRequires:	xorg-lib-libXdamage-devel
 BuildRequires:	xorg-lib-libXinerama-devel
 BuildRequires:	xorg-lib-libXrandr-devel
+BuildRequires:	xorg-lib-libXrender-devel >= 0.8.4
 BuildRequires:	xorg-proto-glproto-devel
 BuildRequires:	xorg-util-makedepend
 Requires:	xorg-app-xvinfo
@@ -74,6 +75,7 @@ Requires:	xorg-lib-libXcomposite-devel >= 0.3
 Requires:	xorg-lib-libXdamage-devel
 Requires:	xorg-lib-libXinerama-devel
 Requires:	xorg-lib-libXrandr-devel
+Requires:	xorg-lib-libXrender-devel >= 0.8.4
 Requires:	xorg-proto-glproto-devel
 Obsoletes:	compiz-quinnstorm-devel
 
