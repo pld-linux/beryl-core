@@ -3,7 +3,7 @@
 %bcond_with	beryl_mesa	# beryl-xgl statically linked with own libGL
 #
 Summary:	OpenGL window and compositing manager
-Summary(pl):	OpenGL-owy zarz±dca okien i sk³adania
+Summary(pl.UTF-8):   OpenGL-owy zarzÄ…dca okien i skÅ‚adania
 Name:		beryl-core
 Version:	0.1.9999.1
 Release:	1
@@ -50,20 +50,20 @@ This is an enhanced version of compiz, developed mainly by Quinnstorm.
 Some parts were optimized for speed and there were added few
 additional plugins and patches, delivering even more eyecandy.
 
-%description -l pl
-Beryl jest OpenGL-owym zarz±dc± sk³adania, u¿ywaj±cym rozszerzenia
-GLX_EXT_texture_from_pixmap w celu wi±zania przekierowanych okien do
+%description -l pl.UTF-8
+Beryl jest OpenGL-owym zarzÄ…dcÄ… skÅ‚adania, uÅ¼ywajÄ…cym rozszerzenia
+GLX_EXT_texture_from_pixmap w celu wiÄ…zania przekierowanych okien do
 tekstur. Posiada elastyczny system wtyczek i jest tak zaprojektowany,
-by dobrze dzia³aæ na wiêkszo¶ci kart graficznych.
+by dobrze dziaÅ‚aÄ‡ na wiÄ™kszoÅ›ci kart graficznych.
 
-To jest udoskonalona wersja compiza, tworzona g³ównie przez
-Quinnstorma. Niektóre czê¶ci zosta³y zoptymalizowane pod wzglêdem
-prêdko¶ci oraz dodano kilka dodatkowych wtyczek i ³atek,
-dostarczaj±cych jeszcze wiêcej ¶wiecide³ek.
+To jest udoskonalona wersja compiza, tworzona gÅ‚Ã³wnie przez
+Quinnstorma. NiektÃ³re czÄ™Å›ci zostaÅ‚y zoptymalizowane pod wzglÄ™dem
+prÄ™dkoÅ›ci oraz dodano kilka dodatkowych wtyczek i Å‚atek,
+dostarczajÄ…cych jeszcze wiÄ™cej Å›wiecideÅ‚ek.
 
 %package devel
 Summary:	Header files for beryl
-Summary(pl):	Pliki nag³ówkowe dla beryla
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe dla beryla
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	OpenGL-GLX-devel
@@ -82,20 +82,20 @@ Obsoletes:	compiz-quinnstorm-devel
 %description devel
 Header files for beryl.
 
-%description devel -l pl
-Pliki nag³ówkowe dla beryla.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe dla beryla.
 
 %package gconf
 Summary:	GConf settings plugin for beryl
-Summary(pl):	Wtyczka ustawieñ GConf dla beryla
+Summary(pl.UTF-8):   Wtyczka ustawieÅ„ GConf dla beryla
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description gconf
 GConf settings plugin for beryl.
 
-%description gconf -l pl
-Wtyczka ustawieñ GConf dla beryla.
+%description gconf -l pl.UTF-8
+Wtyczka ustawieÅ„ GConf dla beryla.
 
 %prep
 %setup -q %{?with_beryl_mesa: -a1}
