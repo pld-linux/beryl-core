@@ -3,7 +3,7 @@
 %bcond_with	beryl_mesa	# beryl-xgl statically linked with own libGL
 #
 Summary:	OpenGL window and compositing manager
-Summary(pl.UTF-8):   OpenGL-owy zarządca okien i składania
+Summary(pl.UTF-8):	OpenGL-owy zarządca okien i składania
 Name:		beryl-core
 Version:	0.1.9999.1
 Release:	1
@@ -63,7 +63,7 @@ dostarczających jeszcze więcej świecidełek.
 
 %package devel
 Summary:	Header files for beryl
-Summary(pl.UTF-8):   Pliki nagłówkowe dla beryla
+Summary(pl.UTF-8):	Pliki nagłówkowe dla beryla
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	OpenGL-GLX-devel
@@ -87,7 +87,7 @@ Pliki nagłówkowe dla beryla.
 
 %package gconf
 Summary:	GConf settings plugin for beryl
-Summary(pl.UTF-8):   Wtyczka ustawień GConf dla beryla
+Summary(pl.UTF-8):	Wtyczka ustawień GConf dla beryla
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
