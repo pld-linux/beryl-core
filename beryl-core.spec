@@ -118,6 +118,7 @@ mv -f po/{uk_UA,uk}.po
 # NOTE: check the list after any upgrade!
 cat > po/LINGUAS <<EOF
 ca
+cs
 de
 es
 es_AR
