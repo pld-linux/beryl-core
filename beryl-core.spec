@@ -20,6 +20,7 @@ BuildRequires:	GConf2-devel >= 2.0
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake >= 1:1.9
+BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libpng-devel
