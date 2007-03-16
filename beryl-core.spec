@@ -126,7 +126,6 @@ pt_BR
 pt
 ru
 sv
-sv_FI
 uk
 zh_CN
 zh_HK
