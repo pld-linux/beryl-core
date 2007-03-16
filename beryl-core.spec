@@ -5,13 +5,13 @@
 Summary:	OpenGL window and compositing manager
 Summary(pl.UTF-8):	OpenGL-owy zarządca okien i składania
 Name:		beryl-core
-Version:	0.1.9999.2
+Version:	0.2.0
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		X11
 Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	f62fd180a1d61dbfe4eba2ae966e9c82
+# Source0-md5:	b937a4e6606d931c03d2014d08e9b096
 #Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
 # Source1-md5:	387d068091bc5c6fa28f6d754e1296d1
 Patch0:		%{name}-link.patch
@@ -102,19 +102,11 @@ Wtyczka ustawień GConf dla beryla.
 %setup -q %{?with_beryl_mesa: -a1}
 %patch0 -p1
 
-mv -f po/{ca_ES,ca}.po
 mv -f po/{de_DE,de}.po
-mv -f po/{es_ES,es}.po
-mv -f po/{fr_FR,fr}.po
 mv -f po/{hu_HU,hu}.po
-mv -f po/{it_IT,it}.po
-mv -f po/{ja_JP,ja}.po
-mv -f po/{ko_KR,ko}.po
 mv -f po/{pt_PT,pt}.po
-mv -f po/{ru_RU,ru}.po
 mv -f po/{sv_SE,sv}.po
 mv -f po/{uk_UA,uk}.po
-# sv_FI is identical to sv_SE
 
 # NOTE: check the list after any upgrade!
 cat > po/LINGUAS <<EOF
@@ -134,6 +126,7 @@ pt_BR
 pt
 ru
 sv
+sv_FI
 uk
 zh_CN
 zh_HK
