@@ -13,7 +13,7 @@ Group:		X11
 Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
 # Source0-md5:	b937a4e6606d931c03d2014d08e9b096
 #Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
-# Source1-md5:	387d068091bc5c6fa28f6d754e1296d1
+## Source1-md5:	387d068091bc5c6fa28f6d754e1296d1
 Patch0:		%{name}-link.patch
 URL:		http://beryl-project.org/
 BuildRequires:	GConf2-devel >= 2.0
