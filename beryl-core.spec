@@ -5,13 +5,13 @@
 Summary:	OpenGL window and compositing manager
 Summary(pl.UTF-8):	OpenGL-owy zarządca okien i składania
 Name:		beryl-core
-Version:	0.2.0
+Version:	0.2.1
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		X11
 Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	b937a4e6606d931c03d2014d08e9b096
+# Source0-md5:	895fe727d4396f6d51ffaf73cf8460d0
 #Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
 ## Source1-md5:	387d068091bc5c6fa28f6d754e1296d1
 Patch0:		%{name}-link.patch
