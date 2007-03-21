@@ -8,7 +8,7 @@ Name:		beryl-core
 Version:	0.2.1
 Release:	1
 Epoch:		1
-License:	MIT
+License:	GPL v2+
 Group:		X11
 Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
 # Source0-md5:	895fe727d4396f6d51ffaf73cf8460d0
