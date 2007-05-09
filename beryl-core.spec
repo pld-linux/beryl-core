@@ -2,18 +2,21 @@
 # Conditional build:
 %bcond_with	beryl_mesa	# beryl-xgl statically linked with own libGL
 #
+
+%define		_beryl_mesa_version	0.1.99.2
+
 Summary:	OpenGL window and compositing manager
 Summary(pl.UTF-8):	OpenGL-owy zarządca okien i składania
 Name:		beryl-core
 Version:	0.2.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2+
 Group:		X11
 Source0:	http://releases.beryl-project.org/%{version}/%{name}-%{version}.tar.bz2
 # Source0-md5:	895fe727d4396f6d51ffaf73cf8460d0
-#Source1:	http://releases.beryl-project.org/%{version}/beryl-mesa-%{version}.tar.bz2
-## Source1-md5:	387d068091bc5c6fa28f6d754e1296d1
+Source1:	http://releases.beryl-project.org/%{_beryl_mesa_version}/beryl-mesa-%{_beryl_mesa_version}.tar.bz2
+# Source1-md5:	387d068091bc5c6fa28f6d754e1296d1
 Patch0:		%{name}-link.patch
 URL:		http://beryl-project.org/
 BuildRequires:	GConf2-devel >= 2.0
@@ -146,6 +149,7 @@ sed -i -e 's@^#! /bin/sh$@#!/bin/bash@' configure
 
 %configure \
 	%{?with_beryl_mesa:--with-berylmesadir=beryl-mesa} \
+	%{?with_beryl_mesa:--enable-xgl} \
 	--disable-static \
 	--enable-gconf
 
