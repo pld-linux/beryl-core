@@ -103,7 +103,7 @@ Wtyczka ustawień GConf dla beryla.
 
 %prep
 %setup -q %{?with_beryl_mesa: -a1}
-%patch0 -p1
+%patch -P0 -p1
 
 mv -f po/{de_DE,de}.po
 mv -f po/{hu_HU,hu}.po
